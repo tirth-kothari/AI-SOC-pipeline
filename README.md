@@ -36,3 +36,42 @@ To allow the Wazuh server to communicate with the AI node, the Ollama service wa
 # Example of the service override used:
 [Service]
 Environment="OLLAMA_HOST=0.0.0.0"
+```
+
+## 🚀 How to Use
+
+Follow these steps to get the AI-SOC bridge running in your environment:
+
+### 1. Prerequisites
+*   **Wazuh Manager:** Installed and receiving logs from at least one agent.
+*   **Ollama Node:** Ollama installed with the `llama3.1` model pulled (`ollama pull llama3.1`).
+*   **Python 3.x:** Installed on the Wazuh Manager with the `requests` library.
+
+### 2. Configure the AI Node
+Ensure Ollama is listening for external connections from the Wazuh server:
+```bash
+sudo systemctl edit ollama.service
+# Add the following lines:
+[Service]
+Environment="OLLAMA_HOST=0.0.0.0"
+
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+```
+
+### 3. Setup the Bridge Script
+On the **Wazuh Server**, clone this repository and set up the environment:
+```bash
+git clone [https://github.com/tirth-kothari/AI-SOC-pipeline.git](https://github.com/tirth-kothari/AI-SOC-pipeline.git)
+cd AI-SOC-pipeline
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 4. Deployment
+Run the bridge script. It will begin tailing the `alerts.json` file and sending Level 3+ alerts to the AI node for analysis:
+
+```bash
+sudo venv/bin/python3 scripts/ai_bridge.py
+```
