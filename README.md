@@ -25,6 +25,9 @@ This project bridges the gap between traditional Security Operations Center (SOC
 
 ## 🧪 Operational Validation
 The following screenshot demonstrates the pipeline successfully intercepting a security event and generating an AI-powered analysis:
+<img width="1802" height="745" alt="Screenshot 2026-05-02 170517" src="https://github.com/user-attachments/assets/fe049c98-22cc-4f1a-942a-4586a38b3380" />
+<img width="1912" height="867" alt="Screenshot 2026-05-02 170401" src="https://github.com/user-attachments/assets/18917fe2-8a3d-4c39-8d7b-6ee411872377" />
+
 
 
 ## 🔧 Configuration Highlights
